@@ -1,15 +1,21 @@
 const express = require('express');
-const app = express();          // app 
+const mongoose = require('mongoose');   // is the DB connected?
 
-app.use(express.json());        // lets Express read JSON request bodies into req.body
+const app = express();
+
+app.use(express.json());
 
 app.get('/health', (req, res) => {
-  // req = what the client sent, res = what we send back
-  res.status(200).json({
-    status: 'ok',
-    uptime: process.uptime(),   // seconds since the server started
+  // Mongoose keeps a number for the connection state:
+  // 0 = disconnected, 1 = connected, 2 = connecting, 3 = disconnecting
+  const dbUp = mongoose.connection.readyState === 1;   // true or false
+
+  res.status(dbUp ? 200 : 503).json({        // 200 if DB is fine, 503 "service unavailable" if not
+    status: dbUp ? 'ok' : 'degraded',
+    database: dbUp ? 'connected' : 'disconnected',
+    uptime: process.uptime(),
     timestamp: new Date().toISOString()
   });
 });
 
-module.exports = app;           // export so server.js (and Vercel) can use it
+module.exports = app;
