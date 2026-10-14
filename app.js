@@ -4,7 +4,7 @@ const mongoose = require('mongoose');   // is the DB connected?
 const app = express();
 
 app.use(express.json());
-
+app.use(require('./src/middleware/requestLogger'));
 app.get('/health', (req, res) => {
   // Mongoose keeps a number for the connection state:
   // 0 = disconnected, 1 = connected, 2 = connecting, 3 = disconnecting

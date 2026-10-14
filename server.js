@@ -1,12 +1,13 @@
-require('dotenv').config();     // loads .env values into process.env
+require('dotenv').config();
 const app = require('./app');
 const connectDB = require('./src/config/db');
+const logger = require('./src/config/logger');        
 
-const PORT = process.env.PORT || 3000;  // use .env PORT, otherwise 3000
+const PORT = process.env.PORT || 3000;
 
 connectDB()
-  .then(() => app.listen(PORT, () => console.log(`Server on ${PORT}`)))
+  .then(() => app.listen(PORT, () => logger.info(`Server started on port ${PORT}`)))
   .catch((err) => {
-    console.error('DB connection failed:', err.message);
-    process.exit(1); // stop the app; a server without a DB is useless
+    logger.error('DB connection failed', { message: err.message });
+    process.exit(1);
   });
