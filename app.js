@@ -1,21 +1,31 @@
 const express = require('express');
-const mongoose = require('mongoose');   // is the DB connected?
+const mongoose = require('mongoose');
+const AppError = require('./src/utils/AppError');               // NEW
+const errorHandler = require('./src/middleware/errorHandler');  // NEW
 
 const app = express();
 
 app.use(express.json());
 app.use(require('./src/middleware/requestLogger'));
-app.get('/health', (req, res) => {
-  // Mongoose keeps a number for the connection state:
-  // 0 = disconnected, 1 = connected, 2 = connecting, 3 = disconnecting
-  const dbUp = mongoose.connection.readyState === 1;   // true or false
 
-  res.status(dbUp ? 200 : 503).json({        // 200 if DB is fine, 503 "service unavailable" if not
+app.get('/health', (req, res) => {
+  const dbUp = mongoose.connection.readyState === 1;
+  res.status(dbUp ? 200 : 503).json({
     status: dbUp ? 'ok' : 'degraded',
     database: dbUp ? 'connected' : 'disconnected',
     uptime: process.uptime(),
     timestamp: new Date().toISOString()
   });
 });
+
+// (later: user and employee routes go HERE)
+
+// NEW: nothing above matched this URL -> 404
+app.use((req, res, next) => {
+  next(new AppError(`Route ${req.originalUrl} not found`, 404));
+});
+
+// NEW: the complaints desk, ALWAYS last
+app.use(errorHandler);
 
 module.exports = app;
