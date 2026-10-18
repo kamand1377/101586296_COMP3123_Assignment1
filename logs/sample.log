@@ -1,0 +1,20 @@
+{"level":"info","message":"Server started on port 3000","timestamp":"2026-10-14T17:28:51.615Z"}
+{"durationMs":3,"level":"info","message":"HTTP request","method":"GET","path":"/health","status":200,"timestamp":"2026-10-14T17:29:33.858Z"}
+{"durationMs":0,"level":"info","message":"HTTP request","method":"GET","path":"/health","status":200,"timestamp":"2026-10-14T17:29:35.506Z"}
+{"durationMs":0,"level":"info","message":"HTTP request","method":"GET","path":"/health","status":200,"timestamp":"2026-10-14T17:29:37.267Z"}
+{"level":"info","message":"Server started on port 3000","timestamp":"2026-10-15T19:27:46.495Z"}
+{"level":"info","message":"Server started on port 3000","timestamp":"2026-10-15T19:28:09.821Z"}
+{"level":"warn","message":"Request failed Route /banana not found","path":"/banana","status":404,"timestamp":"2026-10-15T19:28:49.878Z"}
+{"durationMs":4,"level":"info","message":"HTTP request","method":"GET","path":"/banana","status":404,"timestamp":"2026-10-15T19:28:49.882Z"}
+{"level":"warn","message":"Request failed Malformed JSON body","path":"/health","status":400,"timestamp":"2026-10-15T19:31:03.041Z"}
+{"level":"info","message":"Server started on port 3000","timestamp":"2026-10-15T20:17:26.458Z"}
+{"level":"info","message":"Server started on port 3000","timestamp":"2026-10-15T20:29:33.035Z"}
+{"durationMs":3,"level":"info","message":"HTTP request","method":"GET","path":"/health","status":200,"timestamp":"2026-10-15T20:29:47.056Z"}
+{"durationMs":1,"level":"info","message":"HTTP request","method":"GET","path":"/health","status":200,"timestamp":"2026-10-15T20:31:00.435Z"}
+{"durationMs":0,"level":"info","message":"HTTP request","method":"GET","path":"/health","status":200,"timestamp":"2026-10-15T20:31:14.058Z"}
+{"durationMs":1,"level":"info","message":"HTTP request","method":"GET","path":"/health","status":200,"timestamp":"2026-10-15T20:31:33.142Z"}
+{"durationMs":0,"level":"info","message":"HTTP request","method":"GET","path":"/health","status":200,"timestamp":"2026-10-15T20:31:37.064Z"}
+{"level":"warn","message":"Request failed Route /banana not found","path":"/banana","status":404,"timestamp":"2026-10-15T20:31:57.535Z"}
+{"durationMs":2,"level":"info","message":"HTTP request","method":"GET","path":"/banana","status":404,"timestamp":"2026-10-15T20:31:57.536Z"}
+{"level":"warn","message":"Request failed Route /banana not found","path":"/banana","status":404,"timestamp":"2026-10-15T20:32:13.638Z"}
+{"durationMs":1,"level":"info","message":"HTTP request","method":"GET","path":"/banana","status":404,"timestamp":"2026-10-15T20:32:13.639Z"}
