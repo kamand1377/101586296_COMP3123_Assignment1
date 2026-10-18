@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
+let connecting = null;
 
-async function connectDB() {
-  // wait here until the connection finishes before moving on
-  await mongoose.connect(process.env.MONGODB_URI);
-  console.log('MongoDB connected:', mongoose.connection.name); 
-}
-
-module.exports = connectDB;
+module.exports = function connectDB() {
+  if (mongoose.connection.readyState === 1) return Promise.resolve();
+  if (!connecting) connecting = mongoose.connect(process.env.MONGODB_URI);
+  return connecting;
+};

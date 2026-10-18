@@ -11,6 +11,11 @@ app.use(helmet());
 app.set('trust proxy', 1);                          
 app.use(express.json({ limit: '10kb' }));           
 app.use(require('./src/middleware/requestLogger'));
+const connectDB = require('./src/config/db');   
+
+app.use(async (req, res, next) => {
+  try { await connectDB(); next(); } catch (err) { next(err); }
+});
 
 app.get('/health', (req, res) => {
   const dbUp = mongoose.connection.readyState === 1;
