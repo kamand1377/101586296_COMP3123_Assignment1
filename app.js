@@ -18,14 +18,11 @@ app.get('/health', (req, res) => {
   });
 });
 
+
+
 // (later: user and employee routes go HERE)
 app.use('/api/v1/user', require('./src/routes/user.routes'));
-
-// TEMPORARY: test the auth middleware 
-app.get('/api/v1/me', require('./src/middleware/auth'), (req, res) => {
-  res.status(200).json({ success: true, user: req.user });
-});
-
+app.use('/api/v1/emp', require('./src/routes/employee.routes'));
 
 // NEW: nothing above matched this URL -> 404
 app.use((req, res, next) => {

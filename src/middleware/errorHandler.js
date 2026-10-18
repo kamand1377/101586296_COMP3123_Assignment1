@@ -11,7 +11,8 @@ module.exports = (err, req, res, next) => {
   // MongoDB duplicate key (unique username/email already taken)
   if (err.code === 11000) {
     status = 409;
-    const field = Object.keys(err.keyValue)[0];   // e.g. "email"
+    // skip "user" so a duplicate employee email says "email already exists"
+    const field = Object.keys(err.keyValue).find(k => k !== 'user') || 'Record';
     message = `${field} already exists`;
   }
 
