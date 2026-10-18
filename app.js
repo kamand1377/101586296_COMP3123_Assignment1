@@ -19,6 +19,8 @@ app.get('/health', (req, res) => {
 });
 
 // (later: user and employee routes go HERE)
+app.use('/api/v1/user', require('./src/routes/user.routes'));   // NEW
+
 
 // NEW: nothing above matched this URL -> 404
 app.use((req, res, next) => {
